@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "bdf631b3-5959-4bc0-b2fe-440e0522ffc5",
+		"name": "DUO Security",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin API",
+			"item": [
+				{
+					"name": "/admin/v1/users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Date",
+								"value": "{{duo-DATE}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{duo-API-HOST}}/admin/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{duo-API-HOST}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/admin/v1/users/enroll",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Date",
+								"value": "{{duo-DATE}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{duo-API-HOST}}/admin/v1/users/enroll?email=jed%40nterone.com&username=jed",
+							"protocol": "https",
+							"host": [
+								"{{duo-API-HOST}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"users",
+								"enroll"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "jed%40nterone.com"
+								},
+								{
+									"key": "username",
+									"value": "jed"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/admin/v1/users/[user_ID]",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Date",
+								"value": "{{duo-DATE}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{duo-API-HOST}}/admin/v1/users/{{user_id}}",
+							"protocol": "https",
+							"host": [
+								"{{duo-API-HOST}}"
+							],
+							"path": [
+								"admin",
+								"v1",
+								"users",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth API",
+			"item": [
+				{
+					"name": "/auth/v2/check",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Date",
+								"value": "{{duo-DATE}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{duo-API-HOST}}/auth/v2/check",
+							"protocol": "https",
+							"host": [
+								"{{duo-API-HOST}}"
+							],
+							"path": [
+								"auth",
+								"v2",
+								"check"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{duo-admin-HMAC}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{admin-ikey}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"let pc = require('postman-collection');",
+					"let cryptoJS = require('crypto-js');",
+					"let moment = require('moment');",
+					"",
+					"let DATE = (moment().format(\"ddd, DD MMM YYYY HH:mm:ss ZZ\"));",
+					"pm.environment.set(\"duo-DATE\", DATE)",
+					"",
+					"let METHOD = request.method;",
+					"",
+					"let URL_OBJECT = new pc.Url(request.url);",
+					"",
+					"//HOST is retrieved from the environment variable itself, since parsing the hostname using",
+					"//postman-collection's URL object will just give you the variable name.",
+					"let HOST = pm.environment.get(\"duo-API-HOST\")",
+					"",
+					"let PATH = URL_OBJECT.getPath();",
+					"let QUERY = URL_OBJECT.getQueryString();",
+					"",
+					"let HMAC_STRING = DATE + \"\\n\" ",
+					"                + METHOD + \"\\n\" ",
+					"                + HOST + \"\\n\" ",
+					"                + PATH + \"\\n\"",
+					"                + QUERY",
+					"                ",
+					"let HMACd = cryptoJS.HmacSHA1(HMAC_STRING, pm.environment.get(\"admin-skey\")).toString();",
+					"",
+					"pm.environment.set(\"duo-admin-HMAC\", HMACd)"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

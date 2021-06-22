@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "11308dcc-a204-458f-9288-9f83f969ef5d",
+		"name": "Cisco Secure Endpoint (AMP4E)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET /audit_logs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}audit_logs",
+					"host": [
+						"{{url}}audit_logs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /computers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}computers",
+					"host": [
+						"{{url}}computers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /events",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}events",
+					"host": [
+						"{{url}}events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /event_types",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}event_types",
+					"host": [
+						"{{url}}event_types"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /event_streams",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}event_types",
+					"host": [
+						"{{url}}event_types"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /groups",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}groups",
+					"host": [
+						"{{url}}groups"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /file_lists/application_blocking",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}file_lists/application_blocking",
+					"host": [
+						"{{url}}file_lists"
+					],
+					"path": [
+						"application_blocking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /policies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}policies",
+					"host": [
+						"{{url}}policies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /version",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}version",
+					"host": [
+						"{{url}}version"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /vulnerabilities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}vulnerablities",
+					"host": [
+						"{{url}}vulnerablities"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "40c23d12e456b3c68fc1",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "7a2628b3-05c3-4c9c-b2ff-decd54c057f9",
+				"type": "string"
+			}
+		]
+	}
+}
