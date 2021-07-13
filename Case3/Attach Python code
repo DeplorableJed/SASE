@@ -1,0 +1,78 @@
+def attach(template, variables):
+    """Attach a template with Cisco SDWAN.
+        Provide all template parameters and their values as arguments.
+        Example command:
+          ./sdwan.py attach --template template-id --variables Site-3-vEdge-Variables.yaml
+    """
+    click.secho("Attempting to attach template.")
+    
+    with open(variables) as f:
+        config = yaml.safe_load(f.read())
+
+    system_ip = config.get("system_ip")
+    host_name = config.get("host_name")
+    template_id = template
+
+    template_variables = {
+                            "csv-status":"complete",
+                            "csv-deviceId": config.get("device_id"),
+                            "csv-deviceIP": system_ip,
+                            "csv-host-name": host_name,
+                            "//system/host-name": host_name,
+                            "//system/system-ip": system_ip,
+                            "//system/site-id": config.get("site_id"),
+                            "/1/vpn_1_if_name/interface/if-name": config.get("vpn_1_if_name"),
+                            "/1/vpn_1_if_name/interface/ip/address": config.get("vpn_1_if_ipv4_address"),
+                            "/512/vpn-instance/ip/route/0.0.0.0/0/next-hop/vpn_512_next_hop_ip_address/address": config.get("vpn_512_next_hop_ip_address"),
+                            "/512/vpn_512_if_name/interface/if-name": config.get("vpn_512_if_name"),
+                            "/512/vpn_512_if_name/interface/ip/address": config.get("vpn_512_if_ipv4_address"),
+                            "/0/vpn-instance/ip/route/0.0.0.0/0/next-hop/mpls_next_hop/address": config.get("mpls_next_hop"),
+                            "/0/vpn-instance/ip/route/0.0.0.0/0/next-hop/public_internet_next_hop/address": config.get("public_internet_next_hop"),
+                            "/0/vpn_public_internet_interface/interface/if-name": config.get("vpn_public_internet_interface"),
+                            "/0/vpn_public_internet_interface/interface/ip/address": config.get("vpn_public_interface_if_ipv4_address"),
+                            "/0/vpn_mpls_interface/interface/if-name": config.get("vpn_mpls_interface"),
+                            "/0/vpn_mpls_interface/interface/ip/address": config.get("vpn_mpls_if_ipv4_address"),
+                            "//system/gps-location/latitude": config.get("latitude"),
+                            "//system/gps-location/longitude": config.get("longitude")
+                         }
+
+
+    payload = {
+        "deviceTemplateList":[
+        {
+            "templateId":template_id,       
+            "device":[ template_variables ],
+            "isEdited":"false", 
+            "isMasterEdited":"false" 
+        }
+        ]
+    }
+
+    url = base_url + "/template/device/config/attachfeature"
+
+    response = requests.post(url=url, data=json.dumps(payload), headers=header, verify=False)
+    if response.status_code == 200:
+        attach_template_pushid = response.json()['id']
+        url = base_url + "/device/action/status/%s"%attach_template_pushid
+        while(1):
+            template_status_res = requests.get(url,headers=header,verify=False)
+            if template_status_res.status_code == 200:
+                template_push_status = template_status_res.json()
+                if template_push_status['summary']['status'] == "done":
+                    if 'Success' in template_push_status['summary']['count']:
+                        print("Attached Site 3 vEdge Template")
+                    elif 'Failure' in template_push_status['summary']['count']:
+                        print("Failed to attach Site 3 vEdge Template")
+                        exit()
+                    break
+            else:             
+                print("\nFetching template push status failed")
+                exit()
+
+    else:
+        print("Failed to attach Site 3 vEdge Template")
+        exit()
+
+@click.command()
+@click.option("--target", help="ID of the device to detach")
+@click.option("--sysip", help="System IP of the system to detach")

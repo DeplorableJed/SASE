@@ -1,0 +1,4 @@
+device_type: vedge-CSR-1000v
+source_interface: GigabitEthernet2
+template_description: Pod21 SIG Tunnel Feature Template
+template_name: Pod21_SIG_Tunnel_FT

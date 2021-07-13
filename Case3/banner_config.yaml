@@ -1,0 +1,5 @@
+device_type: vedge-CSR-1000v
+login_banner: Hello World
+motd_banner: Have a good day
+template_description: Pod21 Banner Feature Template
+template_name: Pod21_Banner_FT

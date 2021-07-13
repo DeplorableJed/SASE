@@ -1,0 +1,33 @@
+{
+        "templateName": config["template_name"],
+        "templateMinVersion": "15.0.0",
+        "templateDescription": config["template_description"],
+        "templateType": "cisco_banner",
+        "templateDefinition": {
+            "login": {
+                "vipObjectType": "object",
+                "vipType": "constant",
+                "vipValue": config["login_banner"],  # using the values defined for login banner in yaml file
+                "vipVariableName": "banner_login"
+            },
+            "motd": {
+                "vipObjectType": "object",
+                "vipType": "constant",
+                "vipValue": config["motd_banner"],  # using the values defined for motd banner in yaml file
+                "vipVariableName": "banner_motd"
+            }
+        },
+         "deviceType": [
+            config["device_type"]
+        ],
+        "deviceModels": [
+             {
+                "name": "vedge-CSR-1000v",
+                "displayName": "vEdge CSR 1000v",
+                "deviceType": "vedge-CSR-1000v",
+                "isCliSupported": True,
+                "isCiscoDeviceModel": False
+             }
+         ],
+         "factoryDefault": False
+         }

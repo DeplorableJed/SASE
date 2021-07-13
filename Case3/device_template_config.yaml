@@ -1,0 +1,8 @@
+banner_id: 06ec02c3-ce44-4c73-9384-5279248be4e0
+device_type: vedge-CSR-1000v
+login_banner: jed
+motd_banner: jed
+sig_cred_id: ec094500-5554-4998-aab7-0854f203880e
+sig_tunnel_id: d1cb10f5-4ee6-45af-8eaa-d5b48fcbe980
+template_description: Pod21 Device Template
+template_name: Pod21_Device_Template

@@ -1,0 +1,10 @@
+system_ip: 1.1.1.101
+host_name: cEdge_01
+vpn_if_lo1_ipv4_address: 1.1.1.1
+vpn_if_gi1_ipv4_address: 192.168.2.1/24
+vpn_if_gi2_ipv4_address: 172.16.61.1/24
+vpn_if_gi3_ipv4_address: 172.16.64.1/24
+ospf_router_id: 1.1.1.1
+system_host_name: cEdge_01
+system_system_ip: 1.1.1.101
+site_id: 1000
