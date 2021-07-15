@@ -15,7 +15,7 @@ import json
 def main():
     # Instantiate a Meraki dashboard API session
     dashboard = meraki.DashboardAPI(
-        api_key='d0e472060dd5e6049567d94b042d7aba77be7db3',
+        api_key='',
         base_url='https://api.meraki.com/api/v1/',
         output_log=True,
         log_file_prefix=os.path.basename(__file__)[:-3],
