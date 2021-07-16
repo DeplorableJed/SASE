@@ -1,0 +1,952 @@
+{
+	"info": {
+		"_postman_id": "0673058a-09ea-4b3f-b1db-00e117ec1f2b",
+		"name": "Umbrella Management API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Customer [*SP Only]",
+			"item": [
+				{
+					"name": "List all customers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/serviceproviders/EnterYourOrgID/customers",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"serviceproviders",
+								"EnterYourOrgID",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Single customers details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/serviceproviders/{{org_id}}/customers/EnterYourCustomerID",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"serviceproviders",
+								"{{org_id}}",
+								"customers",
+								"EnterYourCustomerID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"customerName\": \"EnterCustomerName\", \"seats\": EnterNumberOfLicenses, \"streetAddress\": \"EnterStreetAddress\", \"city\": \"EnterCityName\", \"state\": \"EnterStateName\", \"countryCode\": \"EnterCountryCode\", \"packageId\": \"EnterPackageID\", \"dealId\": \"EnterDealID\",  \"adminEmails\": [\"EnterAdminEmails\"]}"
+						},
+						"url": {
+							"raw": "{{server}}/serviceproviders/EnterYourOrgID/customers",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"serviceproviders",
+								"EnterYourOrgID",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete customer",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{server}}/serviceproviders/{{org_id}}/customers/EnterYourCustomerID",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"serviceproviders",
+								"{{org_id}}",
+								"customers",
+								"EnterYourCustomerID"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. Network",
+			"item": [
+				{
+					"name": "List networks for a customer",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "2176b00b1e074d93be82f3d5fe287353",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "a27322d2918a4aba9f5afa811110ff41",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/{{org_id}}networks",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"{{org_id}}networks"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3. Destination Lists",
+			"item": [
+				{
+					"name": "Get All Destination Lists",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "2176b00b1e074d93be82f3d5fe287353",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "a27322d2918a4aba9f5afa811110ff41",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/{{org_id}}/destinationlists",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"{{org_id}}",
+								"destinationlists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Destination List",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"access\": \"SeeDocForOptions\", \"isGlobal\": SeeDocForOptions, \"name\": \"SetTheDestListName\", \"destinations\":[{\"destination\": \"SeeDocForOptions\", \"type\": \"SeeDocForOptions\", \"comment\": \"EnterAComment\"}, {\"destination\": \"SeeDocForOptions\", \"type\": \"SeeDocForOptions\", \"comment\": \"EnterAComment\"}]}"
+						},
+						"url": {
+							"raw": "{{server}}/{{org_id}}/destinationlists/",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"{{org_id}}",
+								"destinationlists",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Destination List Name",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"EnterTheNewNameForTheDestList\"}"
+						},
+						"url": {
+							"raw": "{{server}}EnterYourOrgID/destinationlists/EnterYourDestListID",
+							"host": [
+								"{{server}}EnterYourOrgID"
+							],
+							"path": [
+								"destinationlists",
+								"EnterYourDestListID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Destination List",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							},
+							{
+								"key": "Host",
+								"value": "management.api.umbrella.com"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/{{org_id}}/destinationlists/EnterYourDestListID",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"{{org_id}}",
+								"destinationlists",
+								"EnterYourDestListID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific Destination List",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "2176b00b1e074d93be82f3d5fe287353",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "a27322d2918a4aba9f5afa811110ff41",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/{{org_id}}/destinationlists/9882804",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"{{org_id}}",
+								"destinationlists",
+								"9882804"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Destinations for Specific Destination List",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "2176b00b1e074d93be82f3d5fe287353",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "a27322d2918a4aba9f5afa811110ff41",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/{{org_id}}/destinationlists/9882804/destinations",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"{{org_id}}",
+								"destinationlists",
+								"9882804",
+								"destinations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Destinations to Destination List",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "2176b00b1e074d93be82f3d5fe287353",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "a27322d2918a4aba9f5afa811110ff41",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"destination\":\"Student20.com\",\"comment\":\"Student 20 blocked destination\"}]"
+						},
+						"url": {
+							"raw": "{{server}}/{{org_id}}/destinationlists/9882804/destinations",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"{{org_id}}",
+								"destinationlists",
+								"9882804",
+								"destinations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Destinations from Destination List",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[DestinationID1,DestinationID2]"
+						},
+						"url": {
+							"raw": "{{server}}/{{org_id}}/destinationlists/EnterYourDestListID/destinations/remove",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"{{org_id}}",
+								"destinationlists",
+								"EnterYourDestListID",
+								"destinations",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4. User",
+			"item": [
+				{
+					"name": "List all Roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/{{org_id}}/roles",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"{{org_id}}",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/{{org_id}}/users",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"{{org_id}}",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Specific User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/{{org_id}}/users/EnterYourUserID",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"{{org_id}}",
+								"users",
+								"EnterYourUserID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"firstname\":\"EnterFirstName\",\"lastname\":\"EnterLastName\",\"email\":\"EnterEmail\",\"password\":\"EnterAPassword\",\"roleId\":\"EnterRoleID\",\"timezone\":\"EnterTimeZone\"}"
+						},
+						"url": {
+							"raw": "{{server}}/{{org_id}}/users",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"{{org_id}}",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{server}}/{{org_id}}/users/EnterYourUserID",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"{{org_id}}",
+								"users",
+								"EnterYourUserID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "Basic {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"firstname\":\"test\", \"lastname\":\"test\", \"email\":\"jed77@nterone.com\", \"roleId\":2 \"timezone\":\"America/Los_Angeles\", \"password\":\"Cisco123!\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/{{org_id}}/users",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"{{org_id}}",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5. Virtual Appliances",
+			"item": [
+				{
+					"name": "List all Virtual Appliances",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/{{org_id}}/virtualappliances",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"{{org_id}}",
+								"virtualappliances"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "6. Roaming Computers",
+			"item": [
+				{
+					"name": "List all Roaming Computers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/{{org_id}}/roamingcomputers",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"{{org_id}}",
+								"roamingcomputers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "7. CDFW",
+			"item": [
+				{
+					"name": "CDFW Tunnels",
+					"item": [
+						{
+							"name": "List Organization Tunnels",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic {{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}/{{org_id}}/tunnels",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{org_id}}",
+										"tunnels"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a specific tunnel",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic {{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}/{{org_id}}/tunnels/EnterTunnelLabelId",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{org_id}}",
+										"tunnels",
+										"EnterTunnelLabelId"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Tunnel RSA",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\": \"mytunnel\", \"deviceType\": \"ASA\", \"transportProtocols\": [\"IPSec\"], \"authentication\": {\"type\": \"RSA\"}}"
+								},
+								"url": {
+									"raw": "{{server}}/{{org_id}}/tunnels",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{org_id}}",
+										"tunnels"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Tunnel PSK",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\":\"MyPSKTunnel\",\"deviceType\":\"Viptela vEdge\",\"authentication\":{\"type\":\"PSK\",\"parameters\":{\"idPrefix\":\"prefix123\", \"secret\": \"Secret123\"}}}"
+								},
+								"url": {
+									"raw": "{{server}}/{{org_id}}/tunnels",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{org_id}}",
+										"tunnels"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Tunnels name",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\": \"EnterNewTunnelName\"}"
+								},
+								"url": {
+									"raw": "{{server}}/{{org_id}}/tunnels/EnterTunnelLabelId",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{org_id}}",
+										"tunnels",
+										"EnterTunnelLabelId"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Tunnel",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic {{token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{server}}/{{org_id}}/tunnels/EnterTunnelLabelId",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{org_id}}",
+										"tunnels",
+										"EnterTunnelLabelId"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "CDFW Certificates",
+					"item": [
+						{
+							"name": "Get Tunnels Certificate info",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic {{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}/{{org_id}}/tunnels/EnterTunnelLabelId/certificates/Entersha256Fingerprint",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{org_id}}",
+										"tunnels",
+										"EnterTunnelLabelId",
+										"certificates",
+										"Entersha256Fingerprint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Tunnels Certificate Download URL",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic {{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}/{{org_id}}/tunnels/EnterTunnelLabelId/certificates/Entersha256Fingerprint/download",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{org_id}}",
+										"tunnels",
+										"EnterTunnelLabelId",
+										"certificates",
+										"Entersha256Fingerprint",
+										"download"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{mgmt_secret}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{mgmt_key}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
