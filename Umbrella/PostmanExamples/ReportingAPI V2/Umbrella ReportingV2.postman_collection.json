@@ -1,0 +1,886 @@
+{
+	"info": {
+		"_postman_id": "5ec0f00c-f09c-4ef9-94cf-f2666f959068",
+		"name": "Umbrella ReportingV2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Auth",
+			"item": [
+				{
+					"name": "Get Access Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var __json = pm.response.json()",
+									"pm.environment.set(\"token\", __json.access_token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{AuthAPIToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{Authurl}}",
+							"host": [
+								"{{Authurl}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "First get your access token"
+		},
+		{
+			"name": "2. Reporting",
+			"item": [
+				{
+					"name": "Destinations",
+					"item": [
+						{
+							"name": "Top Destinations DNS",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followAuthorizationHeader": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{jwttoken}}"
+									}
+								],
+								"url": {
+									"raw": "{{APIurl}}{{org_id}}/top-destinations/dns?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{APIurl}}{{org_id}}"
+									],
+									"path": [
+										"top-destinations",
+										"dns"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Top Destinations Proxy",
+							"protocolProfileBehavior": {
+								"followAuthorizationHeader": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{APIurl}}{{org_id}}/top-destinations/proxy?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{APIurl}}{{org_id}}"
+									],
+									"path": [
+										"top-destinations",
+										"proxy"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Top Destinations Firewall",
+							"protocolProfileBehavior": {
+								"followAuthorizationHeader": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{APIurl}}{{org_id}}/top-destinations/firewall?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{APIurl}}{{org_id}}"
+									],
+									"path": [
+										"top-destinations",
+										"firewall"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Total Requests",
+					"item": [
+						{
+							"name": "Total Requests",
+							"protocolProfileBehavior": {
+								"followAuthorizationHeader": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{APIurl}}{{org_id}}/total-requests?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{APIurl}}{{org_id}}"
+									],
+									"path": [
+										"total-requests"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Total Requests DNS",
+							"protocolProfileBehavior": {
+								"followAuthorizationHeader": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{APIurl}}{{org_id}}/total-requests/dns?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{APIurl}}{{org_id}}"
+									],
+									"path": [
+										"total-requests",
+										"dns"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Total Requests Proxy",
+							"protocolProfileBehavior": {
+								"followAuthorizationHeader": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{APIurl}}{{org_id}}/total-requests/proxy?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{APIurl}}{{org_id}}"
+									],
+									"path": [
+										"total-requests",
+										"proxy"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Total Requests Firewall",
+							"protocolProfileBehavior": {
+								"followAuthorizationHeader": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{APIurl}}{{org_id}}/total-requests/firewall?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{APIurl}}{{org_id}}"
+									],
+									"path": [
+										"total-requests",
+										"firewall"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "Top Categories",
+							"protocolProfileBehavior": {
+								"followAuthorizationHeader": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{APIurl}}{{org_id}}/top-categories?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{APIurl}}{{org_id}}"
+									],
+									"path": [
+										"top-categories"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Categories",
+							"protocolProfileBehavior": {
+								"followAuthorizationHeader": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "https://reports.api.umbrella.com/v2/providers/deployments?from=1580564859000&to=1581601659000",
+									"protocol": "https",
+									"host": [
+										"reports",
+										"api",
+										"umbrella",
+										"com"
+									],
+									"path": [
+										"v2",
+										"providers",
+										"deployments"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "1580564859000"
+										},
+										{
+											"key": "to",
+											"value": "1581601659000"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Activity",
+					"item": [
+						{
+							"name": "All Activity",
+							"protocolProfileBehavior": {
+								"followAuthorizationHeader": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{APIurl}}{{org_id}}/activity?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{APIurl}}{{org_id}}"
+									],
+									"path": [
+										"activity"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DNS Activity",
+							"protocolProfileBehavior": {
+								"followAuthorizationHeader": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{APIurl}}{{org_id}}/activity/dns?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{APIurl}}{{org_id}}"
+									],
+									"path": [
+										"activity",
+										"dns"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Proxy Activity",
+							"protocolProfileBehavior": {
+								"followAuthorizationHeader": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{APIurl}}{{org_id}}/activity/proxy?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{APIurl}}{{org_id}}"
+									],
+									"path": [
+										"activity",
+										"proxy"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Firewall Activity",
+							"protocolProfileBehavior": {
+								"followAuthorizationHeader": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{APIurl}}{{org_id}}/activity/firewall?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{APIurl}}{{org_id}}"
+									],
+									"path": [
+										"activity",
+										"firewall"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Top Internal IPs",
+					"protocolProfileBehavior": {
+						"followAuthorizationHeader": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "7bdfb607cac34627812e0827aaecd674",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "18e72d64095b40edb33deb424ece94f3",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{APIurl}}{{org_id}}/top-ips/internal?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+							"host": [
+								"{{APIurl}}{{org_id}}"
+							],
+							"path": [
+								"top-ips",
+								"internal"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "EnterTheFromDateInEpochMs"
+								},
+								{
+									"key": "to",
+									"value": "EnterTheToDateInEpochMs"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Total Requests",
+					"protocolProfileBehavior": {
+						"followAuthorizationHeader": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{APIurl}}{{org_id}}/total-requests?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+							"host": [
+								"{{APIurl}}{{org_id}}"
+							],
+							"path": [
+								"total-requests"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "EnterTheFromDateInEpochMs"
+								},
+								{
+									"key": "to",
+									"value": "EnterTheToDateInEpochMs"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "First get your access token"
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "68a3d97ffc22419fb35a12c41070d158",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "3fb2b2984ae342099858dbf6e27d8b46",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
