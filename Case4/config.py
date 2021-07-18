@@ -1,5 +1,3 @@
-
-
 # Where to connect and with what credentials
 vManage = {
     "host": "172.16.62.102",
@@ -13,6 +11,6 @@ serviceNow = {
     "password": "Cisco123!"
 }
 WEBEX_TEAMS_URL = 'https://webexapis.com/v1/'
-WEBEX_TEAMS_AUTH = 'OTA2ZjE4MzQtNjNkNS00NmFiLWI5ZjAtOWIwZjAzN2I4ZmQxOThkZGUxYTktZWI4_PF84_e17d4b4d-d1d4-4ebd-8b20-7735538ecf7b'
-WEBEX_TEAMS_SPACE_NAME = 'Y2lzY29zcGFyazovL3VzL1JPT00vOWM0ZGEzZTAtZTViNC0xMWViLWFkZTQtY2RkMmQxYTA3MWM0'
+WEBEX_TEAMS_AUTH = 'YOUR_TOKEN_HERE'
+WEBEX_TEAMS_ROOM_ID = 'YOUR_ROOM_ID_HERE'
 
