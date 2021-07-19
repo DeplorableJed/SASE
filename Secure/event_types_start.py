@@ -8,7 +8,7 @@ AMP_KEY = ''
 
 	
 def listEventTypes():
-    url = 'https://api.amp.cisco.com/v1/event_types'
+    url = 'https://api.amp.cisco.com/v1/FIXME'
 
     # do GET request for the domain status and category
     req = requests.get(url, auth = (AMP_CLIENT_ID, AMP_KEY))
