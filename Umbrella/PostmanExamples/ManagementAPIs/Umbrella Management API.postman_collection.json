@@ -145,7 +145,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{server}}/{{org_id}}networks",
+							"raw": "{{server}}/{{org_id}}/networks",
 							"host": [
 								"{{server}}"
 							],
