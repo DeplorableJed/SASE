@@ -20,6 +20,7 @@ def listEventTypes():
     output = req.json()
     print (output)
 
+  # Uncomment this section
     print('{:^20}{:^20}{:^120}'.format(
         'ID',
         'Name',

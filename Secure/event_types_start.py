@@ -5,7 +5,6 @@ import sys
 AMP_CLIENT_ID = ''
 AMP_KEY = ''
 
-
 	
 def listEventTypes():
     url = 'https://api.amp.cisco.com/v1/FIXME'
@@ -21,6 +20,24 @@ def listEventTypes():
     output = req.json()
     print (output)
 
+ """ # Uncomment this section
+    print('{:^20}{:^20}{:^120}'.format(
+        'ID',
+        'Name',
+        'Description'
+    ))
+
+    for item in output['data']: 
+        ID = item['id'] 
+        name = item['name']
+        description = item['description']
+
+        print('{:^20}{:^20}{:^120}'.format(
+            ID,
+            name,
+            description[:80]
+        ))
+"""
 
 def main():
     # Print the menu
