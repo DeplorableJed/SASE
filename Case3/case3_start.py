@@ -15,10 +15,6 @@ vmanage_port = config.vmanage_port
 vmanage_username = config.vmanage_username
 vmanage_password = config.vmanage_password
 
-WEBEX_TEAMS_URL = config.WEBEX_TEAMS_URL
-WEBEX_TEAMS_AUTH = config.WEBEX_TEAMS_AUTH
-WEBEX_TEAMS_SPACE_NAME = config.WEBEX_TEAMS_SPACE_NAME
-WEBEX_MESSAGE = 'CUSTOMIZE ME'
 
 #YAML_FILE = config.YAML_FILE
 
