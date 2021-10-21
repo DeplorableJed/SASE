@@ -52,8 +52,6 @@ class rest_api_lib:
         except:
             print('No valid JSESSION ID returned\n')
             exit()
-
-        self.session[vmanage_host] = sess
        
     def get_token(self, vmanage_host, vmanage_port, jsessionid):
         headers = {'Cookie': jsessionid}
